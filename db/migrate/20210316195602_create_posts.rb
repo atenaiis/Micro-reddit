@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-class CreatePosts < ActiveRecord::Migration[6.1] # rubocop:todo Style/Documentation
+# rubocop:todo Style/Documentation
+class CreatePosts < ActiveRecord::Migration[6.1]
   def change
     create_table :posts do |t|
       t.string :title
@@ -11,3 +12,4 @@ class CreatePosts < ActiveRecord::Migration[6.1] # rubocop:todo Style/Documentat
     end
   end
 end
+# rubocop:enable Style/Documentation
