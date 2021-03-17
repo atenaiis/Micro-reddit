@@ -25,22 +25,31 @@ m = Module.new do
   # rubocop:todo Metrics/MethodLength
   def cli_arg_version # rubocop:todo Metrics/CyclomaticComplexity
     return unless invoked_as_script? # don't want to hijack other binstubs
+<<<<<<< HEAD
     unless 'update'.start_with?(ARGV.first || ' ')
       return
       # rubocop:todo Style/CommentedKeyword
     end # must be running `bundle update`
 
     # rubocop:enable Style/CommentedKeyword
+=======
+    return unless 'update'.start_with?(ARGV.first || ' ') # must be running `bundle update`
+>>>>>>> micro-reddit-featured
 
     bundler_version = nil
     update_index = nil
     ARGV.each_with_index do |a, i|
+<<<<<<< HEAD
       if update_index && update_index.succ == i && a =~ Gem::Version::ANCHORED_VERSION_PATTERN
         bundler_version = a
       end
       unless a =~ /\A--bundler(?:[= ](#{Gem::Version::VERSION_PATTERN}))?\z/
         next
       end
+=======
+      bundler_version = a if update_index && update_index.succ == i && a =~ Gem::Version::ANCHORED_VERSION_PATTERN
+      next unless a =~ /\A--bundler(?:[= ](#{Gem::Version::VERSION_PATTERN}))?\z/
+>>>>>>> micro-reddit-featured
 
       bundler_version = Regexp.last_match(1)
       update_index = i
@@ -70,9 +79,13 @@ m = Module.new do
     return unless File.file?(lockfile)
 
     lockfile_contents = File.read(lockfile)
+<<<<<<< HEAD
     unless lockfile_contents =~ /\n\nBUNDLED WITH\n\s{2,}(#{Gem::Version::VERSION_PATTERN})\n/
       return
     end
+=======
+    return unless lockfile_contents =~ /\n\nBUNDLED WITH\n\s{2,}(#{Gem::Version::VERSION_PATTERN})\n/
+>>>>>>> micro-reddit-featured
 
     Regexp.last_match(1)
   end
@@ -90,9 +103,13 @@ m = Module.new do
 
     requirement = bundler_gem_version.approximate_recommendation
 
+<<<<<<< HEAD
     unless Gem::Version.new(Gem::VERSION) < Gem::Version.new('2.7.0')
       return requirement
     end
+=======
+    return requirement unless Gem::Version.new(Gem::VERSION) < Gem::Version.new('2.7.0')
+>>>>>>> micro-reddit-featured
 
     requirement += '.a' if bundler_gem_version.prerelease?
 
@@ -105,8 +122,12 @@ m = Module.new do
     activate_bundler
   end
 
+<<<<<<< HEAD
   # rubocop:todo Metrics/MethodLength
   def activate_bundler # rubocop:todo Metrics/AbcSize
+=======
+  def activate_bundler # rubocop:todo Metrics/MethodLength
+>>>>>>> micro-reddit-featured
     gem_error = activation_error_handling do
       gem 'bundler', bundler_requirement
     end
@@ -114,12 +135,22 @@ m = Module.new do
 
     require_error = activation_error_handling do
       require 'bundler/version'
+<<<<<<< HEAD
     end
     if require_error.nil? && Gem::Requirement.new(bundler_requirement).satisfied_by?(Gem::Version.new(Bundler::VERSION))
       return
     end
 
+=======
+    end
+    if require_error.nil? && Gem::Requirement.new(bundler_requirement).satisfied_by?(Gem::Version.new(Bundler::VERSION))
+      return
+    end
+
+    # rubocop:todo Layout/LineLength
+>>>>>>> micro-reddit-featured
     warn "Activating bundler (#{bundler_requirement}) failed:\n#{gem_error.message}\n\nTo install the version of bundler this project requires, run `gem install bundler -v '#{bundler_requirement}'`"
+    # rubocop:enable Layout/LineLength
     exit 42
   end
   # rubocop:enable Metrics/MethodLength
