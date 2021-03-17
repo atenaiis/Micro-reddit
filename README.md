@@ -13,10 +13,12 @@ We will be doing some data modeling and putting your active record knowledge to 
 - To run it in your local machine you need to follow these steps.
 
 ## Clone
+
  - Clone repository repository with this command on terminal
  git clone https://github.com/atenaiis/Micro-reddit.git
 
 ## Run
+
  - Once you are in your local directory, open your console and run:
 
  - bundle install
