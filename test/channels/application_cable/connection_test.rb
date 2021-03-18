@@ -1,9 +1,4 @@
-# frozen_string_literal: true
-<<<<<<< HEAD
-
 require 'test_helper'
-=======
->>>>>>> micro-reddit-featured
 
 require 'test_helper'
 
