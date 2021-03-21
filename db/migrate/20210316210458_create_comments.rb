@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 # rubocop:todo Style/Documentation
-class CreateUsers < ActiveRecord::Migration[6.1]
+class CreateComments < ActiveRecord::Migration[6.0]
   def change
-    create_table :users do |t|
-      t.string :name
+    create_table :comments do |t|
+      t.string :body
 
       t.timestamps
     end
